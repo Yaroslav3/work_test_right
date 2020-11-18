@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {GitHubService} from '../../core/service/gitHub.service';
-import {Models} from '../../core/interfaces/interfaces';
-
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-search-input',
@@ -9,12 +7,34 @@ import {Models} from '../../core/interfaces/interfaces';
   styleUrls: ['./search-input.component.sass']
 })
 export class SearchInputComponent implements OnInit {
-  constructor(private gitHubService: GitHubService) {
+ public controlName: FormGroup;
+ public isError = false;
+
+  @Output() public onChange: EventEmitter<string> = new EventEmitter();
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.gitHubService.getUserGitHub('Yaroslav3').subscribe((response: Models.GitHub) => {
-      console.log(response);
+    this.controlName = new FormGroup({
+      nickName: new FormControl(null, Validators.required)
     });
   }
+
+  onClickBtn(): void {
+    console.log(this.controlName.status);
+    if (this.controlName.status === 'VALID') {
+      this.onChange.emit(this.controlName.value.nickName);
+    } else if (this.controlName.status === 'INVALID') {
+      this.isError = true;
+    }
+  }
+
+  public onClickInput(): void {
+    this.isError = false;
+  }
+
+  public onGetName(): string {
+    return '';
+  }
+
 }

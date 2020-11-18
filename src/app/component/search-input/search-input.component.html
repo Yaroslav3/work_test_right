@@ -1,5 +1,21 @@
 <section>
-  <div>
-    test2
+  <form class="name-input" [formGroup]="controlName">
+    <div class="name-input__label">
+     <span>Enter user nick name.</span>
+    </div>
+    <input class="input-name"
+           [ngClass]="{'border-color-error': isError}"
+           (click)="onClickInput()"
+           maxlength="50"
+           name="nickName"
+           formControlName="nickName"
+           value="{{onGetName()}}"
+           type="text">
+  </form>
+  <div class="block-btn">
+    <button class="block-btn__btn" (click)="onClickBtn()">
+      <span class="block-btn__btn__cl">Find</span></button>
+    <div class="block-btn__message" *ngIf="isError">
+      <span class="bl-message">Please enter user nick name</span></div>
   </div>
 </section>

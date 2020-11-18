@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
-import {SearchInputModule} from './search-input/search-input.module';
+import {ContentModule} from './content/content.module';
 
 
 @NgModule({
   imports: [
-    SearchInputModule
+    ContentModule
   ],
   exports: [
-    SearchInputModule
+    ContentModule
   ]
 })
 export class ComponentModule {
