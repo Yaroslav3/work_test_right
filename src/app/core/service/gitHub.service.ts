@@ -11,7 +11,7 @@ export class GitHubService {
               private _SYSTEM: SystemService) {
   }
 
-  public getUserGitHub(nameUser: string): Observable<Models.GitHub>{
-    return this._HTTP.get<Models.GitHub>(this._SYSTEM.getApi() + apiConstants.GITHUB + nameUser + '/repos');
+  public getUserGitHub(nameUser: string): Observable<Models.GitHub[]>{
+    return this._HTTP.get<Models.GitHub[]>(this._SYSTEM.getApi() + apiConstants.GITHUB + nameUser + '/repos');
   }
 }
