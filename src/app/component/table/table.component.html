@@ -1,5 +1,8 @@
 <section>
-  <div>
-    test
-  </div>
+  <ng-container *ngIf="isEmptyList else displayTable">
+    Content is empty
+  </ng-container>
+  <ng-template #displayTable>
+    displayTable
+  </ng-template>
 </section>

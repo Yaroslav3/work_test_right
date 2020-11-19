@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GitHubService} from '../../core/service/gitHub.service';
 import {Models} from '../../core/interfaces/interfaces';
 
+
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
