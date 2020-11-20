@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Models} from '../../core/interfaces/interfaces';
+import {BasicService} from '../../core/service/basic.service';
+import {HelperService} from '../../core/service/helper.service';
 
 @Component({
   selector: 'app-table',
@@ -8,9 +10,11 @@ import {Models} from '../../core/interfaces/interfaces';
 })
 export class TableComponent implements OnInit, OnChanges{
   public isEmptyList = false;
+  public filterData = [];
   @Input() gitHub: Models.GitHub[];
 
-  constructor() {
+  constructor(private basicService: BasicService,
+              private helperService: HelperService) {
   }
 
   ngOnInit(): void {
@@ -18,10 +22,17 @@ export class TableComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(): void {
-    this.isEmptyList = this._isCheckListIsEmpty(this.gitHub);
+    if (this.basicService.isDefined(this.gitHub)) {
+      this.isEmptyList = this._isCheckListIsEmpty(this.gitHub);
+      this.filterData = this.helperService.getLanguage(this.gitHub);
+    }
   }
 
+  onDate(date: string): Models.DataFormat {
+   return  this.helperService.getConvertedTimeFileUpload(date);
+  }
   private _isCheckListIsEmpty(gitArray: Models.GitHub[]): boolean {
     return !gitArray.length;
   }
+
 }
