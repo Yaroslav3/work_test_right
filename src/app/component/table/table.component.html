@@ -3,6 +3,33 @@
     Content is empty
   </ng-container>
   <ng-template #displayTable>
-    displayTable
+    <div class="dropdown-filter">
+      <div class="dropdown-bl">
+        <div class="dropdown-bl__label">
+          <span>Select language</span>
+        </div>
+        <app-select-dropdown [filter]="filterData"></app-select-dropdown>
+      </div>
+    </div>
+    <div class="table-wrapper">
+      <div class="table-content">
+
+        <table class="table-block">
+          <tr>
+            <td class="one-bl">Data create</td>
+            <td class="two-bl">Name project</td>
+            <td class="tree-bl">Language</td>
+            <td class="four-bl">select</td>
+          </tr>
+          <tr *ngFor="let data of gitHub">
+            <td class="row-bl text-bl data-bl">{{onDate(data.created_at).date_str}}
+              {{ onDate(data.created_at).time_str}}</td>
+            <td class="row-bl text-bl">{{data.name}}</td>
+            <td class="row-bl text-bl">{{data.language}}</td>
+            <td class="row-bl text-bl"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </ng-template>
 </section>

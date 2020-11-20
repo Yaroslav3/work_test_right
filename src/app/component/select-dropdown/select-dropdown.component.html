@@ -1,0 +1,14 @@
+<section *ngIf="filter.length > 1" class="language" (appClickOutside)="onClickOutsideCount()">
+  <ng-container>
+    <div class="dropdown-py">
+      <div class="inp-search" (focusout)="onFocusOut()" (click)="onOpenDropdown()"
+           [ngClass]="{'inp-border-bottom': isOpenDropdown}">{{selectLanguage}}</div>
+      <div class="ul-dropdown" [ngClass]="{'open-p': isOpenDropdown}">
+        <ul *ngFor="let option of filter">
+          <li (click)="onSelect(option)" [ngStyle]="{'color': option === selectLanguage ? 'cornflowerblue' : '#4B5366'}"
+              class="li-dropdown">{{option}}</li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+</section>
