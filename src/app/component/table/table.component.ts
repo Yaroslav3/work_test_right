@@ -11,6 +11,7 @@ import {HelperService} from '../../core/service/helper.service';
 export class TableComponent implements OnInit, OnChanges{
   public isEmptyList = false;
   public filterData = [];
+  public selectFilter: string;
   @Input() gitHub: Models.GitHub[];
 
   constructor(private basicService: BasicService,
@@ -31,6 +32,10 @@ export class TableComponent implements OnInit, OnChanges{
   onDate(date: string): Models.DataFormat {
    return  this.helperService.getConvertedTimeFileUpload(date);
   }
+  onSelectFilter(event: string): void{
+    this.selectFilter = event;
+  }
+
   private _isCheckListIsEmpty(gitArray: Models.GitHub[]): boolean {
     return !gitArray.length;
   }
