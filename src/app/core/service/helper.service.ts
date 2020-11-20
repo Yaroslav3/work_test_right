@@ -36,6 +36,7 @@ export class HelperService {
     gitHub.forEach(git => {
       value.push(git.language);
     });
+    value.push('All')
     return this.findDuplicates(value);
   }
 

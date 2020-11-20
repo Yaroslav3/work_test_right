@@ -8,7 +8,7 @@
         <div class="dropdown-bl__label">
           <span>Select language</span>
         </div>
-        <app-select-dropdown [filter]="filterData"></app-select-dropdown>
+        <app-select-dropdown [filter]="filterData" (select)="onSelectFilter($event)"></app-select-dropdown>
       </div>
     </div>
     <div class="table-wrapper">
@@ -21,7 +21,7 @@
             <td class="tree-bl">Language</td>
             <td class="four-bl">select</td>
           </tr>
-          <tr *ngFor="let data of gitHub">
+          <tr *ngFor="let data of gitHub | filerName: selectFilter">
             <td class="row-bl text-bl data-bl">{{onDate(data.created_at).date_str}}
               {{ onDate(data.created_at).time_str}}</td>
             <td class="row-bl text-bl">{{data.name}}</td>
