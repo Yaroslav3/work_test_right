@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { OutsideDirective } from "./outside.directive";
+import { OutsideDirective } from './outside.directive';
 
 @NgModule({
   declarations: [
