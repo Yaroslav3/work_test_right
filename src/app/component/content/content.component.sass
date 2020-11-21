@@ -1,10 +1,40 @@
+@import "../../../style/_mixins.sass"
 
-
-.content
+.block-content
   width: 100%
   display: flex
-  flex-direction: column
-  &__block
+  flex-direction: row
+  padding-top: 40px
+  .content
     width: 50%
-  .table-bl
-    padding-top: 20px
+    display: flex
+    flex-direction: column
+    &__block
+      width: 100%
+    .table-bl
+      padding-top: 20px
+  .content-right
+    width: 50%
+    padding-left: 30px
+    &__title
+      font-size: 20px
+      color: #67A1FB
+      padding-left: 2px
+      padding-top: 6px
+      padding-bottom: 5px
+    .info-repo
+      padding-left: 10px
+      p
+        color: darkgreen
+
+@include tablet-media()
+  .block-content
+    flex-direction: column
+    .content
+     width: 100%
+    .content-right
+      padding-top: 35px
+      width: 100%
+      padding-left: 0
+      &__title
+        padding-left: 0

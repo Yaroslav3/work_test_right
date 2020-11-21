@@ -1,10 +1,23 @@
 <div class="app-wrapper">
-  <div class="content">
-    <div class="content__block">
-    <app-search-input (onChange)="onUserNameValue($event)"></app-search-input>
+  <div class="block-content">
+    <div class="content">
+      <div class="content__block">
+        <app-search-input (onChange)="onUserNameValue($event)"></app-search-input>
+      </div>
+      <div class="content__block table-bl">
+        <app-table [gitHub]="gitHub"
+                   (onChange)="onList($event)"></app-table>
+      </div>
     </div>
-    <div class="content__block table-bl">
-      <app-table [gitHub]="gitHub"></app-table>
+    <div class="content-right">
+      <div class="content-right__title">
+        <p>Select repository</p>
+      </div>
+      <div *ngFor="let repo of selectRepository">
+        <div class="info-repo">
+          <p>{{repo.name}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

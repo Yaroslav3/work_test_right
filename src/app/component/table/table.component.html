@@ -26,7 +26,11 @@
               {{ onDate(data.created_at).time_str}}</td>
             <td class="row-bl text-bl">{{data.name}}</td>
             <td class="row-bl text-bl">{{data.language}}</td>
-            <td class="row-bl text-bl"></td>
+            <td class="row-bl text-bl">
+                <div>
+                  <input type="checkbox" id="scales" name="scales" (click)="onClickCheckBox(data)" [checked]="data.active">
+              </div>
+            </td>
           </tr>
         </table>
       </div>
