@@ -5,6 +5,7 @@ import {SystemService} from './service/system.service';
 import {HttpClientModule} from '@angular/common/http';
 import {BasicService} from './service/basic.service';
 import {HelperService} from './service/helper.service';
+import {LocalStorageService} from './service/local-storage.service';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {HelperService} from './service/helper.service';
     GitHubService,
     SystemService,
     BasicService,
-    HelperService
+    HelperService,
+    LocalStorageService
   ]
 })export class CoreModule {}

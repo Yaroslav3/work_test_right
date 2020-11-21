@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {LocalStorageService} from '../../core/service/local-storage.service';
+import {BasicService} from '../../core/service/basic.service';
 
 @Component({
   selector: 'app-search-input',
@@ -10,18 +12,21 @@ export class SearchInputComponent implements OnInit {
  public controlName: FormGroup;
  public isError = false;
 
-  @Output() public onChange: EventEmitter<string> = new EventEmitter();
-  constructor() {
+  @Output() onChange: EventEmitter<string> = new EventEmitter();
+  constructor(private localStorageService: LocalStorageService,
+              private basicService: BasicService) {
   }
 
   ngOnInit(): void {
     this.controlName = new FormGroup({
       nickName: new FormControl(null, Validators.required)
     });
+
+    this.setName(this.getLocalStorageName());
+    this.onChange.emit(this.getLocalStorageName());
   }
 
   onClickBtn(): void {
-    console.log(this.controlName.status);
     if (this.controlName.status === 'VALID') {
       this.onChange.emit(this.controlName.value.nickName);
     } else if (this.controlName.status === 'INVALID') {
@@ -33,8 +38,19 @@ export class SearchInputComponent implements OnInit {
     this.isError = false;
   }
 
-  public onGetName(): string {
-    return '';
+  private setName(name: string): void {
+    if (name !== '') {
+      this.controlName.setValue({
+        nickName: name
+      });
+    }
   }
 
+  private getLocalStorageName(): string {
+    if (!this.controlName.value.nickName || this.basicService.isDefined(this.controlName.value.nickName)) {
+      if (this.localStorageService.getLocalStorageParamNickName() !== '') {
+        return this.localStorageService.getLocalStorageParamNickName();
+      }
+    }
+  }
 }
