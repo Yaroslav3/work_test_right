@@ -18,11 +18,13 @@ export class ContentComponent implements OnInit {
   }
 
   onUserNameValue(name: string): void {
-    this.gitHubService.getUserGitHub(name).subscribe((response: Models.GitHub[]) => {
-      this.gitHub = response;
-      this.localStorageService.setLocalStorageParamNickName(name);
-      this.selectRepository = this.clearSelectRepository(this.gitHub);
-    });
+    if (name !== null) {
+      this.gitHubService.getUserGitHub(name).subscribe((response: Models.GitHub[]) => {
+        this.gitHub = response;
+        this.localStorageService.setLocalStorageParamNickName(name);
+        this.selectRepository = this.clearSelectRepository(this.gitHub);
+      });
+    }
   }
 
   onList(listRepo: Models.GitHub[]): void{
