@@ -23,7 +23,7 @@ export class SearchInputComponent implements OnInit {
     });
 
     this.setName(this.getLocalStorageName());
-    if (!this.getLocalStorageName()) {
+    if (this.getLocalStorageName()) {
       this.onChange.emit(this.getLocalStorageName());
     }
   }
