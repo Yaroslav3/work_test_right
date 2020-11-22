@@ -18,7 +18,6 @@ export class ContentComponent implements OnInit {
   }
 
   onUserNameValue(name: string): void {
-    console.log('jiwe', name)
     if (name !== null) {
       this.gitHubService.getUserGitHub(name).subscribe((response: Models.GitHub[]) => {
         this.gitHub = response;
